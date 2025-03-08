@@ -544,8 +544,11 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
             position: relative;
-            height: 400px;
+            height: auto; /* Change from fixed height to auto */
+            min-height: 450px; /* Add a minimum height instead */
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -581,8 +584,13 @@
         }
 
         .project-content {
-            padding: 0 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 0 1.5rem 5rem; /* Increase bottom padding */
+            position: relative;
         }
+        
 
         .project-title {
             font-size: 1.4rem;
@@ -592,8 +600,13 @@
 
         .project-description {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Increase margin-bottom */
             font-size: 0.95rem;
+            /* Optional: add text truncation */
+            display: -webkit-box;
+            -webkit-line-clamp: 5; /* Show maximum 5 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .project-tech {
@@ -607,6 +620,7 @@
             position: absolute;
             bottom: 1.5rem;
             left: 1.5rem;
+            right: 1.5rem; /* Add right constraint */
         }
 
         .featured-projects {

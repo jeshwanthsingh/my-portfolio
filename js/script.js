@@ -61,20 +61,46 @@
         });
 
         // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
+       // More robust smooth scrolling for navigation links
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        
+        // Check if the target element exists
+        if (!targetId || targetId === "#") return;
+        
+        try {
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            // Get the height of your navbar
+            const navHeight = document.querySelector('nav').offsetHeight || 80;
+            
+            // Calculate the position to scroll to
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            
+            // Perform the scroll
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
             });
-        });
+            
+            // Close mobile menu if open
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks && navLinks.classList.contains('active')) {
+              navLinks.classList.remove('active');
+            }
+          } else {
+            console.error(`Element with id ${targetId} not found`);
+          }
+        } catch (error) {
+          console.error(`Error scrolling to ${targetId}:`, error);
+        }
+      });
+    });
+  });
