@@ -499,12 +499,12 @@
         .profile-img {
             position: relative;
             border-radius: 5px;
-            filter: grayscale(100%) contrast(1);
+            filter: grayscale(30%) contrast(1.1); /* Reduced grayscale, slightly increased contrast */
             transition: all 0.3s ease;
             width: 100%;
             z-index: 2;
         }
-
+        
         .profile-img:hover {
             filter: none;
         }
@@ -636,7 +636,7 @@
         }
 
         .project-image {
-            grid-column: 1 / 8;
+            grid-column: 1 / 7;
             grid-row: 1 / -1;
             position: relative;
             z-index: 1;
