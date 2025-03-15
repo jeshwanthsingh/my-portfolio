@@ -784,38 +784,25 @@
         }
 
         .skill-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-secondary);
-        }
-
-        .skill-name {
             font-family: var(--font-code);
             font-size: 0.9rem;
-        }
-
-        .skill-level {
-            width: 60%;
-            height: 8px;
-            background-color: rgba(204, 214, 246, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background-color: var(--accent);
-            border-radius: 4px;
             position: relative;
-            animation: skillProgress 1.5s ease-in-out;
+            padding-left: 1rem;
+            transition: transform 0.2s ease, color 0.2s ease;
         }
-
-        @keyframes skillProgress {
-            0% {
-                width: 0;
-            }
+        
+        .skill-item:before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .skill-item:hover {
+            transform: translateX(5px);
+            color: var(--text-primary);
         }
 
         /* Resume Section */
